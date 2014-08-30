@@ -26,7 +26,7 @@ The role uses the following variables, set in the defaults/main.yml file:
 Dependencies
 ------------
 
-None
+Depends on the [Ansibles.mysql](https://galaxy.ansible.com/list#/roles/509) role.  See "Requirements" section for file dependencies.
 
 Usage
 -----
