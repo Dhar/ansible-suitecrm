@@ -1,0 +1,18 @@
+---
+- name: Install Nginx
+  apt: state=present pkg=nginx
+
+- name: Change SuiteCRM file ownership
+  file: path={{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max recurse=yes owner=www-data group=www-data
+
+- name: Make SuiteCRM site available
+  template: src=nginx.conf dest=/etc/nginx/sites-available/suitecrm mode=0755
+  notify: restart nginx
+
+- name: Disable default Nginx site
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  notify: restart nginx
+
+- name: Enable SuiteCRM site
+  file: src=/etc/nginx/sites-available/suitecrm path=/etc/nginx/sites-enabled/suitecrm state=link
+  notify: restart nginx

@@ -1,0 +1,6 @@
+---
+- name: apt-get clean
+  command: apt-get clean
+
+- name: Remove zipfile
+  file: path="{{ suitecrm_install_dir }}/SuiteCRM-{{ suitecrm_version }}-MAX.zip" state=absent

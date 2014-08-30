@@ -1,0 +1,12 @@
+---
+galaxy_info:
+  author: Gary Arnold
+  description: Installs SuiteCRM
+  license: MIT
+  min_ansible_version: 1.4
+  platforms:
+    - name: Ubuntu
+      versions:
+      - trusty
+  categories:
+    - web
