@@ -9,6 +9,7 @@
     - php5-imap
     - php5-curl
     - php5-gd
+    - patch
 
 - name: Find PHP ini file
   shell: find /etc -name php.ini | fgrep fpm
@@ -67,6 +68,17 @@
   args:
     chdir: "{{ suitecrm_install_dir }}"
     creates: "{{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max"
+
+- name: Copy patch file
+  copy: src=dbConfig_a.php.patch dest="{{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max/install"
+
+- name: Patch installation file
+  shell: patch < dbConfig_a.php.patch
+  args:
+    chdir: "{{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max/install"
+
+- name: Remove patch file
+  file: path="{{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max/install/dbConfig_a.php.patch" state=absent
 
 - name: Set up crontab
   cron: name="suitecrm scheduler" job="su -s /bin/bash -c 'cd /var/www/suitecrm-7.1.2-max; php -f cron.php > /dev/null 2>&1' www-data"
