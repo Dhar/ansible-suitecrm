@@ -69,16 +69,5 @@
     chdir: "{{ suitecrm_install_dir }}"
     creates: "{{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max"
 
-- name: Copy patch file
-  copy: src=dbConfig_a.php.patch dest="{{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max/install"
-
-- name: Patch installation file
-  shell: patch < dbConfig_a.php.patch
-  args:
-    chdir: "{{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max/install"
-
-- name: Remove patch file
-  file: path="{{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max/install/dbConfig_a.php.patch" state=absent
-
 - name: Set up crontab
   cron: name="suitecrm scheduler" job="su -s /bin/bash -c 'cd /var/www/suitecrm-{{ suitecrm_version }}-max; php -f cron.php > /dev/null 2>&1' www-data"
