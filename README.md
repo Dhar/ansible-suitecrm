@@ -31,7 +31,7 @@ Depends on the [Ansibles.mysql](https://galaxy.ansible.com/list#/roles/509) role
 Usage
 -----
 
-    ansible-galaxy install garnold.suitecrm
+    ansible-galaxy install Dhar.suitecrm
 
 Also check the [Ansible Galaxy](https://galaxy.ansibleworks.com/intro) about page.
 
