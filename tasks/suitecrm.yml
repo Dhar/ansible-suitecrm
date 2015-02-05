@@ -61,10 +61,10 @@
   file: path={{ suitecrm_install_dir }} state=directory
 
 - name: Copy SuiteCRM zipfile
-  copy: src=SuiteCRM-{{ suitecrm_version }}-MAX.zip dest={{ suitecrm_install_dir }}
+  copy: src='SuiteCRM-{{ suitecrm_version }} MAX.zip' dest={{ suitecrm_install_dir }}
 
 - name: Unzip SuiteCRM
-  command: unzip -o SuiteCRM-{{ suitecrm_version }}-MAX.zip
+  command: unzip -o 'SuiteCRM-{{ suitecrm_version }} MAX.zip'
   args:
     chdir: "{{ suitecrm_install_dir }}"
     creates: "{{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max"
