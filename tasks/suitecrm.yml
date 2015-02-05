@@ -81,4 +81,4 @@
   file: path="{{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max/install/dbConfig_a.php.patch" state=absent
 
 - name: Set up crontab
-  cron: name="suitecrm scheduler" job="su -s /bin/bash -c 'cd /var/www/suitecrm-7.1.2-max; php -f cron.php > /dev/null 2>&1' www-data"
+  cron: name="suitecrm scheduler" job="su -s /bin/bash -c 'cd /var/www/suitecrm-{{ suitecrm_version }}-max; php -f cron.php > /dev/null 2>&1' www-data"
