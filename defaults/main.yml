@@ -1,5 +1,5 @@
 ---
-suitecrm_version: 7.1.2
+suitecrm_version: 7.1.5
 suitecrm_install_dir: /var/www
 
 suitecrm_frontend_host: localhost
