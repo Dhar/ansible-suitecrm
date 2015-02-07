@@ -3,7 +3,7 @@
   apt: state=present pkg=nginx
 
 - name: Change SuiteCRM file ownership
-  file: path={{ suitecrm_install_dir }}/suitecrm recurse=yes owner=www-data group=www-data
+  file: path={{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max recurse=yes owner=www-data group=www-data
 
 - name: Make SuiteCRM site available
   template: src=nginx.conf dest=/etc/nginx/sites-available/suitecrm mode=0755
