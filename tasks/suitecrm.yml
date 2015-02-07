@@ -63,11 +63,16 @@
 - name: Copy SuiteCRM zipfile
   copy: src='SuiteCRM-{{ suitecrm_version }} MAX.zip' dest={{ suitecrm_install_dir }}
 
+# Doesn't really create "{{ suitecrm_install_dir }}/suitecrm", but we want to not do all this work if that symlink already exists
+# Would be nice if ansible could handle multiple files in the creates arg :(
 - name: Unzip SuiteCRM
   command: unzip -o 'SuiteCRM-{{ suitecrm_version }} MAX.zip'
   args:
     chdir: "{{ suitecrm_install_dir }}"
-    creates: "{{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max"
+    creates: "{{ suitecrm_install_dir }}/suitecrm"
+
+- name: Create versionless symlink
+  file: src={{ suitecrm_install_dir }}/suitecrm-{{ suitecrm_version }}-max dest={{ suitecrm_install_dir }}/suitecrm state=link
 
 - name: Set up crontab
-  cron: name="suitecrm scheduler" job="su -s /bin/bash -c 'cd /var/www/suitecrm-{{ suitecrm_version }}-max; php -f cron.php > /dev/null 2>&1' www-data"
+  cron: name="suitecrm scheduler" job="su -s /bin/bash -c 'cd /var/www/suitecrm; php -f cron.php > /dev/null 2>&1' www-data"
