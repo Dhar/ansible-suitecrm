@@ -15,7 +15,7 @@ Role Variables
 
 The role uses the following variables, set in the defaults/main.yml file:
 
-* `suitecrm_version` - Specific version of SuiteCRM to install (defaults to 7.1.2)
+* `suitecrm_version` - Specific version of SuiteCRM to install (defaults to 7.1.5)
 * `suitecrm_install_dir` - Directory to install SuiteCRM (defaults to /var/www)
 * `suitecrm_frontend_host` - Hostname of SuiteCRM install (defaults to localhost)
 * `suitecrm_database_host` - Hostname of MySQL database (defaults to localhost)
