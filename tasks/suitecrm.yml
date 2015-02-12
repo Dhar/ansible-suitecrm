@@ -9,7 +9,6 @@
     - php5-imap
     - php5-curl
     - php5-gd
-    - patch
 
 - name: Find PHP ini file
   shell: find /etc -name php.ini | fgrep fpm
